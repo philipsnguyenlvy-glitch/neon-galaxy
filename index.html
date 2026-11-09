@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Neon Galaxy - Space Shooter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- HUD Layer -->
+        <div id="hud" class="ui-layer hidden">
+            <div class="hud-top">
+                <div class="hud-box">
+                    <span class="label">SCORE</span>
+                    <span id="scoreVal" class="value glow-text">0</span>
+                </div>
+                <div class="hud-box">
+                    <span class="label">WAVE</span>
+                    <span id="waveVal" class="value">1</span>
+                </div>
+                <div class="hud-box">
+                    <span class="label">HI-SCORE</span>
+                    <span id="highScoreVal" class="value">0</span>
+                </div>
+            </div>
+
+            <div class="hud-bottom">
+                <div class="bar-group">
+                    <div class="bar-label">SHIELD / HP</div>
+                    <div class="progress-bar">
+                        <div id="hpBar" class="bar-fill"></div>
+                    </div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-label">WEAPON LVL</div>
+                    <div id="weaponLevelIcons" class="weapon-icons">
+                        <span class="lvl-dot active">1</span>
+                        <span class="lvl-dot">2</span>
+                        <span class="lvl-dot">3</span>
+                        <span class="lvl-dot">4</span>
+                        <span class="lvl-dot">MAX</span>
+                    </div>
+                </div>
+                <div class="bombs-display">
+                    <span class="label">BOMBS [E / R-Click]:</span>
+                    <span id="bombIcons">💣 💣</span>
+                </div>
+            </div>
+
+            <!-- Boss Health Bar -->
+            <div id="bossHpContainer" class="boss-bar-wrap hidden">
+                <div class="boss-title">⚠️ BOSS DETECTED ⚠️</div>
+                <div class="boss-bar">
+                    <div id="bossHpFill" class="boss-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="ui-layer overlay-screen">
+            <div class="panel">
+                <h1 class="game-title neon-pulse">NEON GALAXY</h1>
+                <p class="subtitle">RETRO ARCADE SPACE SHOOTER</p>
+
+                <div class="instructions">
+                    <h3>HƯỚNG DẪN ĐIỀU KHIỂN</h3>
+                    <ul>
+                        <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> hoặc <kbd>Phím mũi tên</kbd>: Di chuyển phi thuyền</li>
+                        <li><kbd>Chuột</kbd>: Di chuột để di chuyển (kéo thả chạm trên mobile)</li>
+                        <li><kbd>Chuột trái</kbd> / <kbd>Space</kbd>: Tự động bắn hoặc giữ bắn</li>
+                        <li><kbd>E</kbd> hoặc <kbd>Chuột phải</kbd>: Kích hoạt Bom dọn màn hình</li>
+                        <li><kbd>P</kbd>: Tạm dừng game</li>
+                    </ul>
+                </div>
+
+                <button id="btnStart" class="glow-btn">BẮT ĐẦU CHƠI</button>
+            </div>
+        </div>
+
+        <!-- Pause Screen -->
+        <div id="pauseScreen" class="ui-layer overlay-screen hidden">
+            <div class="panel">
+                <h2 class="neon-text">TẠM DỪNG</h2>
+                <button id="btnResume" class="glow-btn">TIẾP TỤC</button>
+                <button id="btnRestartFromPause" class="glow-btn secondary">CHƠI LẠI</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="ui-layer overlay-screen hidden">
+            <div class="panel">
+                <h1 class="game-over-title">MISSION FAILED</h1>
+                <div class="stats-box">
+                    <p>Điểm số: <span id="finalScore" class="glow-text">0</span></p>
+                    <p>Wave sống sót: <span id="finalWave">1</span></p>
+                    <p>Kỷ lục cao nhất: <span id="finalHighScore">0</span></p>
+                </div>
+                <button id="btnRestart" class="glow-btn">CHƠI LẠI</button>
+            </div>
+        </div>
+
+        <!-- Sound Toggle -->
+        <button id="btnSoundToggle" class="icon-btn" title="Bật/Tắt âm thanh">🔊</button>
+    </div>
+
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
